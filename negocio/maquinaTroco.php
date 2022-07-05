@@ -101,8 +101,13 @@ class maquinaTroco
         $this->moeda5 -= $cinco;
         $this->moeda01 -= $um;
 
-        $maquinaTrocoDao = new maquinaTrocoDAO();
-        $maquinaTrocoDao->alterar($this);
+        if ($this->moeda1 < 0 || $this->moeda50 < 0 || $this->moeda25 < 0 || $this->moeda10 < 0 || $this->moeda5 < 0 || $this->moeda01 < 0) {
+            header('location: ../apresentacao/sangriaMaquinaTroco.php?maquinaId=' . $this->id);
+            exit;
+        } else {
+            $maquinaTrocoDao = new maquinaTrocoDAO();
+            $maquinaTrocoDao->alterar($this);
+        }
     }
 
     public function abastecer($umReal, $cinquenta, $vinteCinco, $dez, $cinco, $um)
@@ -195,6 +200,11 @@ class maquinaTroco
         $this->moeda5 = $moedas['cinco'] - $moedasUsadas['cinco'];
         $this->moeda01 = $moedas['um'] - $moedasUsadas['um'];
 
-        $maquinaTrocoDao->alterar($this);
+        if ($this->moeda1 < 0 || $this->moeda50 < 0 || $this->moeda25 < 0 || $this->moeda10 < 0 || $this->moeda5 < 0 || $this->moeda01 < 0) {
+            header('location: ../apresentacao/trocoMaquinaTroco.php?maquinaId=' . $this->id);
+            exit;
+        } else {
+            $maquinaTrocoDao->alterar($this);
+        }
     }
 }
