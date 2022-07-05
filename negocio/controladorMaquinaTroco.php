@@ -32,7 +32,7 @@ if ($_POST['cinco'])
 if ($_POST['um'])
     $um = intval($_POST['um']);
 
-if ($_POST['inserirMaquina']) {
+if (!$_POST['campoHiddenMaquinaId']) {
     $maquinaTrocoDao = new maquinaTrocoDAO();
     $mt = new maquinaTroco($umReal, $cinquenta, $vinteCinco, $dez, $cinco, $um);
     $maquinaTrocoDao->inserir($mt);
